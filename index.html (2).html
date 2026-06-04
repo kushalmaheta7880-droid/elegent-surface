@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elegant Surface Pvt. Ltd. — Premium Tiles & Sanitary Ware</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #B8975A;
+  --gold-light: #D4B483;
+  --gold-dark: #8B6E3A;
+  --cream: #FAF7F2;
+  --warm-white: #FDFCF9;
+  --charcoal: #1C1C1A;
+  --charcoal-mid: #2E2E2B;
+  --stone: #7A7570;
+  --stone-light: #C4BEB8;
+  --stone-pale: #EDE8E1;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--warm-white);color:var(--charcoal);overflow-x:hidden;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+
+/* ── PAGE SYSTEM ── */
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 60px;height:80px;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s ease;}
+nav.scrolled{background:rgba(28,28,26,0.96);backdrop-filter:blur(20px);}
+nav.light{background:transparent;}
+.nav-logo{font-family:var(--font-display);font-size:22px;font-weight:600;color:#fff;letter-spacing:2px;cursor:pointer;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{font-family:var(--font-body);font-size:12px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.75);text-decoration:none;cursor:pointer;transition:color 0.3s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+.nav-links a:hover{color:#fff;}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:#fff;}
+.nav-cta{padding:10px 24px;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;background:transparent;font-family:var(--font-body);transition:all 0.3s;}
+.nav-cta:hover{background:var(--gold);color:#fff;}
+
+/* ── HERO ── */
+.hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1800&q=80') center/cover no-repeat;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(28,28,26,0.85) 0%,rgba(28,28,26,0.4) 60%,rgba(184,151,90,0.2) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;}
+.hero-tag{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0;animation:fadeUp 0.8s 0.3s forwards;}
+.hero-title{font-family:var(--font-display);font-size:88px;font-weight:300;color:#fff;line-height:0.95;margin-bottom:28px;opacity:0;animation:fadeUp 0.8s 0.5s forwards;}
+.hero-title em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,0.65);letter-spacing:2px;max-width:480px;margin:0 auto 44px;line-height:2;opacity:0;animation:fadeUp 0.8s 0.7s forwards;}
+.hero-btns{display:flex;gap:16px;justify-content:center;opacity:0;animation:fadeUp 0.8s 0.9s forwards;}
+.btn-gold{padding:16px 44px;background:var(--gold);color:#fff;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;border:none;font-family:var(--font-body);transition:all 0.4s;position:relative;overflow:hidden;}
+.btn-gold::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,0.15);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.5s,height 0.5s;}
+.btn-gold:hover::before{width:300px;height:300px;}
+.btn-outline-w{padding:16px 44px;background:transparent;border:1px solid rgba(255,255,255,0.4);color:#fff;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);transition:all 0.3s;}
+.btn-outline-w:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 1.5s forwards;}
+.hero-scroll span{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.4);text-transform:uppercase;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s infinite;}
+
+/* ── STATS STRIP ── */
+.stats-strip{background:var(--charcoal);padding:40px 60px;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-item{text-align:center;padding:0 20px;border-right:1px solid rgba(255,255,255,0.08);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:var(--font-display);font-size:48px;font-weight:300;color:var(--gold);line-height:1;}
+.stat-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:8px;}
+
+/* ── SECTION COMMONS ── */
+.section{padding:100px 60px;}
+.section-alt{background:var(--cream);}
+.s-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.s-title{font-family:var(--font-display);font-size:56px;font-weight:300;line-height:1.1;color:var(--charcoal);margin-bottom:16px;}
+.s-title em{font-style:italic;color:var(--gold);}
+.s-desc{font-size:14px;font-weight:300;color:var(--stone);line-height:2;max-width:520px;}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;}
+.section-header-center{text-align:center;margin-bottom:60px;}
+.section-header-center .s-desc{margin:0 auto;}
+
+/* ── CATEGORY GRID ── */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.cat-item{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4;}
+.cat-item.wide{grid-column:span 2;aspect-ratio:auto;}
+.cat-img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s ease;}
+.cat-item:hover .cat-img{transform:scale(1.06);}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,28,26,0.85) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;}
+.cat-label{font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.cat-name{font-family:var(--font-display);font-size:34px;font-weight:400;color:#fff;}
+.cat-count{font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px;}
+.cat-arrow{position:absolute;right:36px;bottom:36px;width:40px;height:40px;border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;color:#fff;transition:all 0.3s;font-size:18px;}
+.cat-item:hover .cat-arrow{background:var(--gold);border-color:var(--gold);}
+
+/* ── PRODUCT CARDS ── */
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.product-card{background:#fff;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.4s,box-shadow 0.4s;}
+.product-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(28,28,26,0.12);}
+.product-img-wrap{position:relative;overflow:hidden;aspect-ratio:4/3;}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s;}
+.product-card:hover .product-img-wrap img{transform:scale(1.05);}
+.product-badge{position:absolute;top:16px;left:16px;background:var(--gold);color:#fff;font-size:10px;letter-spacing:2px;padding:6px 14px;text-transform:uppercase;}
+.product-body{padding:24px;}
+.product-cat{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.product-name{font-family:var(--font-display);font-size:22px;font-weight:400;margin-bottom:6px;}
+.product-size{font-size:12px;color:var(--stone);margin-bottom:14px;}
+.product-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--stone-pale);padding-top:14px;}
+.product-price{font-size:16px;font-weight:500;color:var(--charcoal);}
+.product-btn{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);cursor:pointer;background:none;border:none;font-family:var(--font-body);}
+
+/* ── GALLERY ── */
+.gallery-masonry{columns:3;gap:12px;}
+.gallery-item{break-inside:avoid;margin-bottom:12px;overflow:hidden;cursor:pointer;position:relative;}
+.gallery-item img{width:100%;display:block;transition:transform 0.6s;}
+.gallery-item:hover img{transform:scale(1.04);}
+.gallery-item-overlay{position:absolute;inset:0;background:rgba(28,28,26,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;}
+.gallery-item:hover .gallery-item-overlay{background:rgba(28,28,26,0.3);}
+.gallery-zoom{opacity:0;color:#fff;font-size:28px;transition:opacity 0.3s;}
+.gallery-item:hover .gallery-zoom{opacity:1;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-img-stack{position:relative;height:560px;}
+.about-img-main{position:absolute;right:0;top:0;width:80%;height:80%;object-fit:cover;}
+.about-img-accent{position:absolute;left:0;bottom:0;width:55%;height:55%;object-fit:cover;border:6px solid var(--warm-white);}
+.about-gold-line{position:absolute;left:calc(55% - 3px);bottom:calc(55% - 3px);width:3px;height:60px;background:var(--gold);}
+.about-text .s-title{margin-bottom:24px;}
+.about-text .s-desc{margin-bottom:32px;}
+.about-values{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px;}
+.about-val{padding:20px;border-left:2px solid var(--gold);}
+.about-val h4{font-size:13px;font-weight:500;letter-spacing:1px;margin-bottom:6px;}
+.about-val p{font-size:12px;color:var(--stone);line-height:1.8;}
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testi-card{padding:36px;background:#fff;position:relative;}
+.testi-card::before{content:'"';font-family:var(--font-display);font-size:80px;color:var(--gold-light);position:absolute;top:16px;left:30px;line-height:1;opacity:0.4;}
+.testi-text{font-family:var(--font-display);font-size:18px;font-style:italic;line-height:1.7;color:var(--charcoal);margin-bottom:24px;position:relative;z-index:1;}
+.testi-author{display:flex;align-items:center;gap:14px;}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--stone-pale);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:18px;color:var(--gold);}
+.testi-name{font-size:13px;font-weight:500;}
+.testi-loc{font-size:11px;color:var(--stone);}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;}
+.contact-info h2{font-family:var(--font-display);font-size:48px;font-weight:300;margin-bottom:20px;}
+.contact-info p{font-size:14px;color:var(--stone);line-height:2;margin-bottom:36px;}
+.contact-detail{display:flex;gap:16px;margin-bottom:20px;align-items:flex-start;}
+.contact-icon{width:40px;height:40px;border:1px solid var(--stone-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--gold);}
+.contact-detail-text .label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:4px;}
+.contact-detail-text .value{font-size:14px;font-weight:400;color:var(--charcoal);}
+.contact-form{background:var(--charcoal);padding:48px;}
+.contact-form h3{font-family:var(--font-display);font-size:32px;font-weight:300;color:#fff;margin-bottom:32px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;font-family:var(--font-body);font-size:13px;outline:none;transition:border-color 0.3s;}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.25);}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--gold);}
+.form-group select{color:rgba(255,255,255,0.6);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-submit{width:100%;padding:16px;background:var(--gold);color:#fff;font-size:11px;letter-spacing:3px;text-transform:uppercase;border:none;font-family:var(--font-body);cursor:pointer;transition:background 0.3s;margin-top:8px;}
+.form-submit:hover{background:var(--gold-dark);}
+
+/* ── FOOTER ── */
+.footer{background:var(--charcoal-mid);padding:80px 60px 40px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px;}
+.footer-logo{font-family:var(--font-display);font-size:28px;font-weight:400;color:#fff;margin-bottom:16px;}
+.footer-logo span{color:var(--gold);}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.9;margin-bottom:24px;}
+.footer-social{display:flex;gap:12px;}
+.social-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);font-size:14px;cursor:pointer;transition:all 0.3s;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+.footer-col h4{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:20px;}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:12px;cursor:pointer;transition:color 0.3s;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25);}
+
+/* ── LIGHTBOX ── */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;display:none;align-items:center;justify-content:center;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;}
+.lightbox-close{position:absolute;top:24px;right:32px;color:#fff;font-size:32px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;background:none;border:none;}
+.lightbox-close:hover{opacity:1;}
+
+/* ── HERO SLIDESHOW ── */
+.hero-slides{position:absolute;inset:0;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center;}
+.hero-slide.active{opacity:1;}
+.hero-dots{position:absolute;bottom:80px;right:60px;z-index:3;display:flex;gap:8px;}
+.hero-dot{width:28px;height:2px;background:rgba(255,255,255,0.3);cursor:pointer;transition:all 0.3s;}
+.hero-dot.active{background:var(--gold);width:48px;}
+
+/* ── BRAND STRIP ── */
+.brand-strip{background:var(--warm-white);padding:40px 60px;border-top:1px solid var(--stone-pale);border-bottom:1px solid var(--stone-pale);}
+.brand-strip-label{text-align:center;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--stone);margin-bottom:28px;}
+.brand-logos{display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;}
+.brand-logo{font-family:var(--font-display);font-size:18px;font-weight:300;letter-spacing:3px;color:var(--stone-light);text-transform:uppercase;transition:color 0.3s;cursor:default;}
+.brand-logo:hover{color:var(--gold);}
+
+/* ── FEATURE BANNER ── */
+.feature-banner{position:relative;height:420px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.feature-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 8s ease;}
+.feature-banner:hover .feature-banner-bg{transform:scale(1.05);}
+.feature-banner-overlay{position:absolute;inset:0;background:rgba(28,28,26,0.62);}
+.feature-banner-content{position:relative;z-index:2;text-align:center;color:#fff;}
+.feature-banner-content .s-label{margin-bottom:12px;}
+.feature-banner-content h2{font-family:var(--font-display);font-size:52px;font-weight:300;margin-bottom:20px;}
+.feature-banner-content h2 em{font-style:italic;color:var(--gold-light);}
+
+/* ── SHOWROOM IMAGE STRIP ── */
+.showroom-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:60px;}
+.showroom-img{position:relative;overflow:hidden;aspect-ratio:1;}
+.showroom-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s;}
+.showroom-img:hover img{transform:scale(1.08);}
+.showroom-img-overlay{position:absolute;inset:0;background:rgba(28,28,26,0);transition:background 0.3s;}
+.showroom-img:hover .showroom-img-overlay{background:rgba(28,28,26,0.25);}
+
+/* ── ROOM INSPIRATION ── */
+.inspiration-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.insp-item{position:relative;overflow:hidden;cursor:pointer;}
+.insp-item.tall{grid-row:span 2;}
+.insp-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s;}
+.insp-item:hover img{transform:scale(1.05);}
+.insp-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,28,26,0.8) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;}
+.insp-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.insp-title{font-family:var(--font-display);font-size:26px;font-weight:400;color:#fff;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:1;}50%{transform:scaleY(0.6);opacity:0.4;}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.3s;}
+.reveal-delay-4{transition-delay:0.4s;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:40px;right:40px;background:var(--charcoal);color:#fff;padding:16px 28px;font-size:13px;z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.4s;border-left:3px solid var(--gold);}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* ── PAGE TRANSITIONS ── */
+.page-enter{animation:pageEnter 0.5s ease forwards;}
+@keyframes pageEnter{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+
+/* ── 360 VIEWER ── */
+.btn-360{position:absolute;bottom:12px;right:12px;background:rgba(28,28,26,0.82);color:#fff;border:1px solid rgba(184,151,90,0.6);padding:7px 14px;font-family:var(--font-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:6px;backdrop-filter:blur(8px);transition:all 0.3s;z-index:3;border-radius:2px;}
+.btn-360:hover{background:var(--gold);border-color:var(--gold);}
+.btn-360 .icon-360{width:18px;height:18px;border:1.5px solid currentColor;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;animation:spin360hint 3s ease-in-out infinite;}
+@keyframes spin360hint{0%,100%{transform:rotate(0deg);}50%{transform:rotate(180deg);}}
+
+.viewer-modal{position:fixed;inset:0;background:rgba(10,10,8,0.97);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;}
+.viewer-modal.open{display:flex;}
+.viewer-close{position:absolute;top:24px;right:32px;color:rgba(255,255,255,0.6);font-size:28px;cursor:pointer;background:none;border:none;line-height:1;transition:color 0.2s;}
+.viewer-close:hover{color:#fff;}
+.viewer-inner{position:relative;width:min(680px,90vw);}
+.viewer-title{font-family:var(--font-display);font-size:28px;font-weight:300;color:#fff;text-align:center;margin-bottom:6px;}
+.viewer-sub{font-size:11px;letter-spacing:3px;color:var(--gold);text-align:center;text-transform:uppercase;margin-bottom:32px;}
+.viewer-stage{width:100%;aspect-ratio:4/3;position:relative;overflow:hidden;background:#111;cursor:grab;user-select:none;border:1px solid rgba(255,255,255,0.06);}
+.viewer-stage:active{cursor:grabbing;}
+.viewer-img{width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform 0.05s linear;}
+.viewer-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.6);color:rgba(255,255,255,0.7);font-size:11px;letter-spacing:2px;padding:8px 20px;text-transform:uppercase;backdrop-filter:blur(8px);white-space:nowrap;opacity:1;transition:opacity 0.5s;}
+.viewer-hint.hidden{opacity:0;}
+.viewer-progress{margin-top:20px;display:flex;align-items:center;gap:16px;}
+.viewer-bar-wrap{flex:1;height:2px;background:rgba(255,255,255,0.1);position:relative;}
+.viewer-bar{height:100%;background:var(--gold);width:0%;transition:width 0.05s linear;}
+.viewer-deg{font-size:11px;color:rgba(255,255,255,0.4);min-width:48px;text-align:right;letter-spacing:1px;}
+.viewer-controls{display:flex;gap:12px;justify-content:center;margin-top:20px;}
+.viewer-ctrl-btn{padding:10px 22px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);font-family:var(--font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+.viewer-ctrl-btn:hover{border-color:var(--gold);color:var(--gold);}
+.viewer-ctrl-btn.active-auto{border-color:var(--gold);color:var(--gold);background:rgba(184,151,90,0.08);}
+.viewer-dots{display:flex;gap:6px;justify-content:center;margin-top:16px;}
+.viewer-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background 0.2s,transform 0.2s;}
+.viewer-dot.active{background:var(--gold);transform:scale(1.4);}
+@keyframes rotateIn{from{opacity:0;transform:scale(0.94);}to{opacity:1;transform:scale(1);}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  .hero-title{font-size:52px;}
+  .stats-strip{grid-template-columns:repeat(2,1fr);gap:1px;}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .section{padding:64px 24px;}
+  .cat-grid{grid-template-columns:1fr;}
+  .cat-item.wide{grid-column:span 1;}
+  .product-grid{grid-template-columns:1fr 1fr;}
+  .gallery-masonry{columns:2;}
+  .about-grid,.contact-grid,.footer-top{grid-template-columns:1fr;}
+  .about-img-stack{height:320px;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="light" id="nav">
+  <div class="nav-logo" onclick="showPage('home')">Elegant<span>Surface</span></div>
+  <div class="nav-links">
+    <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a onclick="showPage('products')" id="nav-products">Products</a>
+    <a onclick="showPage('gallery')" id="nav-gallery">Gallery</a>
+    <a onclick="showPage('about')" id="nav-about">About</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="showPage('contact')">Get a Quote</button>
+</nav>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- 360 VIEWER MODAL -->
+<div class="viewer-modal" id="viewer360">
+  <button class="viewer-close" onclick="closeViewer()">✕</button>
+  <div class="viewer-inner">
+    <div class="viewer-title" id="viewer-name">Product Name</div>
+    <div class="viewer-sub">360° Interactive View — drag to rotate</div>
+    <div class="viewer-stage" id="viewer-stage">
+      <img id="viewer-img" src="" alt="360 view">
+      <div class="viewer-hint" id="viewer-hint">⟵ Drag to rotate ⟶</div>
+    </div>
+    <div class="viewer-progress">
+      <div class="viewer-bar-wrap"><div class="viewer-bar" id="viewer-bar"></div></div>
+      <div class="viewer-deg" id="viewer-deg">0°</div>
+    </div>
+    <div class="viewer-dots" id="viewer-dots"></div>
+    <div class="viewer-controls">
+      <button class="viewer-ctrl-btn" id="btn-auto" onclick="toggleAuto()">⟳ Auto Rotate</button>
+      <button class="viewer-ctrl-btn" onclick="resetViewer()">↺ Reset</button>
+      <button class="viewer-ctrl-btn" onclick="showPage('contact');closeViewer()">Enquire →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ HOME PAGE -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-slides" id="hero-slides">
+      <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1800&q=85');"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1800&q=85');"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1800&q=85');"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1800&q=85');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-dots" id="hero-dots">
+      <div class="hero-dot active" onclick="goSlide(0)"></div>
+      <div class="hero-dot" onclick="goSlide(1)"></div>
+      <div class="hero-dot" onclick="goSlide(2)"></div>
+      <div class="hero-dot" onclick="goSlide(3)"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-tag">Rajkot's Premier Tile & Sanitary Ware Destination</div>
+      <h1 class="hero-title">Elegant <em>Surfaces,</em><br>Timeless Spaces</h1>
+      <p class="hero-sub">Curated tiles & luxury sanitary ware for homes and commercial spaces that deserve the extraordinary.</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showPage('products')">Explore Collection</button>
+        <button class="btn-outline-w" onclick="showPage('gallery')">View Gallery</button>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Tile Designs</div></div>
+    <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat-item"><div class="stat-num">3,000+</div><div class="stat-label">Happy Clients</div></div>
+    <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">Premium Brands</div></div>
+  </div>
+
+  <!-- BRAND STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-label">Trusted Brands We Carry</div>
+    <div class="brand-logos">
+      <div class="brand-logo">Kajaria</div>
+      <div class="brand-logo">RAK Ceramics</div>
+      <div class="brand-logo">Somany</div>
+      <div class="brand-logo">Asian Granito</div>
+      <div class="brand-logo">Nitco</div>
+      <div class="brand-logo">Simpolo</div>
+      <div class="brand-logo">Hindware</div>
+      <div class="brand-logo">Parryware</div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section">
+    <div class="section-header reveal">
+      <div>
+        <div class="s-label">Shop by Category</div>
+        <div class="s-title">Our <em>Collections</em></div>
+      </div>
+      <button class="btn-gold" onclick="showPage('products')">View All Products</button>
+    </div>
+    <div class="cat-grid reveal">
+      <div class="cat-item" onclick="showPage('products')">
+        <img class="cat-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Floor Tiles">
+        <div class="cat-overlay">
+          <div class="cat-label">Category</div>
+          <div class="cat-name">Floor Tiles</div>
+          <div class="cat-count">200+ designs</div>
+        </div>
+        <div class="cat-arrow">→</div>
+      </div>
+      <div class="cat-item wide" onclick="showPage('products')">
+        <img class="cat-img" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80" alt="Designer Bathroom" style="height:100%;object-fit:cover;">
+        <div class="cat-overlay">
+          <div class="cat-label">Featured</div>
+          <div class="cat-name">Designer Bathrooms</div>
+          <div class="cat-count">Complete solutions</div>
+        </div>
+        <div class="cat-arrow">→</div>
+      </div>
+      <div class="cat-item" onclick="showPage('products')">
+        <img class="cat-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt="Wall Tiles">
+        <div class="cat-overlay">
+          <div class="cat-label">Category</div>
+          <div class="cat-name">Wall Tiles</div>
+          <div class="cat-count">150+ designs</div>
+        </div>
+        <div class="cat-arrow">→</div>
+      </div>
+      <div class="cat-item" onclick="showPage('products')">
+        <img class="cat-img" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80" alt="Sanitary Ware">
+        <div class="cat-overlay">
+          <div class="cat-label">Category</div>
+          <div class="cat-name">Sanitary Ware</div>
+          <div class="cat-count">Top brands</div>
+        </div>
+        <div class="cat-arrow">→</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section section-alt">
+    <div class="section-header-center reveal">
+      <div class="s-label">Hand-picked for You</div>
+      <div class="s-title">Featured <em>Products</em></div>
+    </div>
+    <div class="product-grid">
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Marble Floor">
+          <div class="product-badge">Bestseller</div>
+          <button class="btn-360" onclick="open360(event,'Carrara Marble Matt','https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=900&q=90')"><span class="icon-360">↻</span>360°</button>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Floor Tiles</div>
+          <div class="product-name">Carrara Marble Matt</div>
+          <div class="product-size">600 × 600 mm · Porcelain</div>
+          <div class="product-footer">
+            <div class="product-price">₹ 55 / sq.ft</div>
+            <button class="product-btn" onclick="showPage('contact')">Enquire →</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&q=80" alt="Modern Bathroom">
+          <div class="product-badge">New Arrival</div>
+          <button class="btn-360" onclick="open360(event,'Oslo Wall-hung WC','https://images.unsplash.com/photo-1620626011761-996317b8d101?w=900&q=90')"><span class="icon-360">↻</span>360°</button>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Sanitary Ware</div>
+          <div class="product-name">Oslo Wall-hung WC</div>
+          <div class="product-size">490 × 360 mm · Ceramic</div>
+          <div class="product-footer">
+            <div class="product-price">₹ 12,500 / pc</div>
+            <button class="product-btn" onclick="showPage('contact')">Enquire →</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Kitchen Tiles">
+          <button class="btn-360" onclick="open360(event,'Ivory Gloss Subway','https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=90')"><span class="icon-360">↻</span>360°</button>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Wall Tiles</div>
+          <div class="product-name">Ivory Gloss Subway</div>
+          <div class="product-size">300 × 600 mm · Ceramic</div>
+          <div class="product-footer">
+            <div class="product-price">₹ 42 / sq.ft</div>
+            <button class="product-btn" onclick="showPage('contact')">Enquire →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOM INSPIRATION -->
+  <section class="section section-alt">
+    <div class="section-header reveal">
+      <div>
+        <div class="s-label">Room Ideas</div>
+        <div class="s-title">Design <em>Inspiration</em></div>
+      </div>
+      <button class="btn-gold" onclick="showPage('gallery')">View Full Gallery</button>
+    </div>
+    <div class="inspiration-grid reveal">
+      <div class="insp-item tall" onclick="showPage('gallery')">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=900&q=85" alt="Luxury Bathroom" style="height:100%;min-height:500px;">
+        <div class="insp-overlay">
+          <div class="insp-tag">Bathroom</div>
+          <div class="insp-title">Spa-Style Retreat</div>
+        </div>
+      </div>
+      <div style="display:grid;gap:4px;">
+        <div class="insp-item" onclick="showPage('gallery')">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85" alt="Living Room Floor" style="height:240px;">
+          <div class="insp-overlay">
+            <div class="insp-tag">Living Room</div>
+            <div class="insp-title">Marble Elegance</div>
+          </div>
+        </div>
+        <div class="insp-item" onclick="showPage('gallery')">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=85" alt="Kitchen" style="height:240px;">
+          <div class="insp-overlay">
+            <div class="insp-tag">Kitchen</div>
+            <div class="insp-title">Modern Subway Style</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE BANNER -->
+  <div class="feature-banner reveal">
+    <div class="feature-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1800&q=85');"></div>
+    <div class="feature-banner-overlay"></div>
+    <div class="feature-banner-content">
+      <div class="s-label">Luxury Collection 2025</div>
+      <h2>Freestanding Baths &amp; <em>Premium Fixtures</em></h2>
+      <button class="btn-gold" onclick="showPage('products')" style="margin-top:8px;">Shop Sanitary Ware</button>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="section-header-center reveal">
+      <div class="s-label">Client Stories</div>
+      <div class="s-title">What Our Clients <em>Say</em></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-text">The showroom selection is extraordinary. We found exactly what we envisioned for our home renovation. The team's expertise made all the difference.</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:none;overflow:hidden;padding:0;"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" style="width:100%;height:100%;object-fit:cover;" alt="Rahul"></div>
+          <div><div class="testi-name">Rahul Mehta</div><div class="testi-loc">Interior Designer, Rajkot</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-text">Premium quality tiles at competitive prices. Elegant Surface has been our go-to for every project. The Italian marble collection is simply stunning.</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:none;overflow:hidden;padding:0;"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" style="width:100%;height:100%;object-fit:cover;" alt="Priya"></div>
+          <div><div class="testi-name">Priya Shah</div><div class="testi-loc">Architect, Ahmedabad</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="testi-text">From selection to delivery, the entire experience was seamless. Our bathroom looks like it belongs in a 5-star hotel. Highly recommend!</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:none;overflow:hidden;padding:0;"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" style="width:100%;height:100%;object-fit:cover;" alt="Amit"></div>
+          <div><div class="testi-name">Amit Patel</div><div class="testi-loc">Homeowner, Rajkot</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════ PRODUCTS PAGE -->
+<div class="page" id="page-products">
+  <div style="height:80px;background:var(--charcoal);"></div>
+  <section class="section section-alt">
+    <div class="section-header-center reveal">
+      <div class="s-label">Our Range</div>
+      <div class="s-title">Premium <em>Products</em></div>
+      <p class="s-desc" style="margin:0 auto;">Explore our curated collection of 500+ tile designs and top-brand sanitary ware, sourced from across India and Italy.</p>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;margin-bottom:48px;flex-wrap:wrap;" id="filter-btns">
+      <button class="btn-gold filter-btn active" data-filter="all">All Products</button>
+      <button style="padding:12px 28px;border:1px solid var(--stone-pale);background:transparent;font-family:var(--font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" class="filter-btn" data-filter="floor">Floor Tiles</button>
+      <button style="padding:12px 28px;border:1px solid var(--stone-pale);background:transparent;font-family:var(--font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" class="filter-btn" data-filter="wall">Wall Tiles</button>
+      <button style="padding:12px 28px;border:1px solid var(--stone-pale);background:transparent;font-family:var(--font-body);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" class="filter-btn" data-filter="sanitary">Sanitary Ware</button>
+    </div>
+
+    <div class="product-grid" id="product-grid">
+      <div class="product-card" data-cat="floor">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt=""><div class="product-badge">Bestseller</div><button class="btn-360" onclick="open360(event,'Carrara Marble Matt','https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Floor Tiles</div><div class="product-name">Carrara Marble Matt</div><div class="product-size">600 × 600 mm</div><div class="product-footer"><div class="product-price">₹ 55/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="floor">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt=""><button class="btn-360" onclick="open360(event,'Grigio Stone Effect','https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Floor Tiles</div><div class="product-name">Grigio Stone Effect</div><div class="product-size">800 × 800 mm</div><div class="product-footer"><div class="product-price">₹ 68/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="floor">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt=""><div class="product-badge">New</div><button class="btn-360" onclick="open360(event,'Terrazzo Classic','https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Floor Tiles</div><div class="product-name">Terrazzo Classic</div><div class="product-size">600 × 1200 mm</div><div class="product-footer"><div class="product-price">₹ 82/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="wall">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt=""><button class="btn-360" onclick="open360(event,'Ivory Gloss Subway','https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Wall Tiles</div><div class="product-name">Ivory Gloss Subway</div><div class="product-size">300 × 600 mm</div><div class="product-footer"><div class="product-price">₹ 42/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="wall">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=600&q=80" alt=""><div class="product-badge">Popular</div><button class="btn-360" onclick="open360(event,'Sage Zellige Look','https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Wall Tiles</div><div class="product-name">Sage Zellige Look</div><div class="product-size">75 × 300 mm</div><div class="product-footer"><div class="product-price">₹ 95/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="wall">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=80" alt=""><button class="btn-360" onclick="open360(event,'Noir Onyx Gloss','https://images.unsplash.com/photo-1600210492493-0946911123ea?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Wall Tiles</div><div class="product-name">Noir Onyx Gloss</div><div class="product-size">300 × 900 mm</div><div class="product-footer"><div class="product-price">₹ 75/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="sanitary">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&q=80" alt=""><div class="product-badge">New Arrival</div><button class="btn-360" onclick="open360(event,'Oslo Wall-hung WC','https://images.unsplash.com/photo-1620626011761-996317b8d101?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Sanitary Ware</div><div class="product-name">Oslo Wall-hung WC</div><div class="product-size">490 × 360 mm</div><div class="product-footer"><div class="product-price">₹ 12,500/pc</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="sanitary">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt=""><button class="btn-360" onclick="open360(event,'Arc Table-top Basin','https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Sanitary Ware</div><div class="product-name">Arc Table-top Basin</div><div class="product-size">500 × 380 mm</div><div class="product-footer"><div class="product-price">₹ 4,200/pc</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="sanitary">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt=""><div class="product-badge">Luxury</div><button class="btn-360" onclick="open360(event,'Freestanding Bathtub','https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Sanitary Ware</div><div class="product-name">Freestanding Bathtub</div><div class="product-size">1700 × 750 mm</div><div class="product-footer"><div class="product-price">₹ 68,000/pc</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+
+      <!-- NEW PRODUCTS WITH FRESH IMAGES -->
+      <div class="product-card" data-cat="floor">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt=""><div class="product-badge">Premium</div><button class="btn-360" onclick="open360(event,'Onyx Black Polished','https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Floor Tiles</div><div class="product-name">Onyx Black Polished</div><div class="product-size">800 × 1600 mm</div><div class="product-footer"><div class="product-price">₹ 120/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="floor">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80" alt=""><button class="btn-360" onclick="open360(event,'Bianco Venatino','https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Floor Tiles</div><div class="product-name">Bianco Venatino</div><div class="product-size">600 × 1200 mm</div><div class="product-footer"><div class="product-price">₹ 88/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="wall">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=600&q=80" alt=""><div class="product-badge">Trending</div><button class="btn-360" onclick="open360(event,'Ocean Blue Gloss','https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Wall Tiles</div><div class="product-name">Ocean Blue Gloss</div><div class="product-size">300 × 600 mm</div><div class="product-footer"><div class="product-price">₹ 65/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="wall">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?w=600&q=80" alt=""><button class="btn-360" onclick="open360(event,'Terracotta Matte','https://images.unsplash.com/photo-1613545325278-f24b0cae1224?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Wall Tiles</div><div class="product-name">Terracotta Matte</div><div class="product-size">150 × 150 mm</div><div class="product-footer"><div class="product-price">₹ 48/sq.ft</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+      <div class="product-card" data-cat="sanitary">
+        <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=80" alt=""><div class="product-badge">New</div><button class="btn-360" onclick="open360(event,'Gold Finish Mixer','https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=900&q=90')"><span class="icon-360">↻</span>360°</button></div>
+        <div class="product-body"><div class="product-cat">Sanitary Ware</div><div class="product-name">Gold Finish Mixer Tap</div><div class="product-size">Single lever · Brass</div><div class="product-footer"><div class="product-price">₹ 3,800/pc</div><button class="product-btn" onclick="showPage('contact')">Enquire →</button></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ GALLERY PAGE -->
+<div class="page" id="page-gallery">
+  <div style="height:80px;background:var(--charcoal);"></div>
+  <section class="section">
+    <div class="section-header-center reveal">
+      <div class="s-label">Inspiration</div>
+      <div class="s-title">Project <em>Gallery</em></div>
+      <p class="s-desc" style="margin:0 auto;">Real spaces, real transformations — a glimpse of what Elegant Surface products can create.</p>
+    </div>
+    <div class="gallery-masonry" id="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+
+      <!-- ADDITIONAL GALLERY IMAGES -->
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1613545325278-f24b0cae1224?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=80" alt="">
+        <div class="gallery-item-overlay"><div class="gallery-zoom">⊕</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ ABOUT PAGE -->
+<div class="page" id="page-about">
+  <div style="height:80px;background:var(--charcoal);"></div>
+  <section class="section">
+    <div class="about-grid">
+      <div class="about-img-stack reveal">
+        <img class="about-img-main" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" alt="Showroom">
+        <img class="about-img-accent" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Products">
+        <div class="about-gold-line"></div>
+      </div>
+      <div class="about-text reveal">
+        <div class="s-label">Our Story</div>
+        <div class="s-title">Crafting <em>Beautiful</em><br>Spaces Since 2012</div>
+        <p class="s-desc">Elegant Surface Pvt. Ltd. was founded with a singular vision — to bring world-class tiles and sanitary ware to homes and commercial spaces across Gujarat. From a small showroom in Rajkot, we have grown into one of the region's most trusted names in premium surface solutions.</p>
+        <div class="about-values">
+          <div class="about-val">
+            <h4>Quality First</h4>
+            <p>Every product is ISI certified and sourced from manufacturers who share our commitment to excellence.</p>
+          </div>
+          <div class="about-val">
+            <h4>Expert Guidance</h4>
+            <p>Our trained consultants help you pick the perfect tile for every space and budget.</p>
+          </div>
+          <div class="about-val">
+            <h4>Honest Pricing</h4>
+            <p>Competitive rates with no hidden costs. What you see is what you pay.</p>
+          </div>
+          <div class="about-val">
+            <h4>After-sales Care</h4>
+            <p>We support you even after purchase — from installation tips to replacements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="section-header-center reveal">
+      <div class="s-label">Why We're Different</div>
+      <div class="s-title">The <em>Elegant Surface</em> Promise</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
+      <div style="background:var(--charcoal);padding:40px 30px;text-align:center;" class="reveal reveal-delay-1">
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--gold);margin-bottom:12px;">500+</div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);">Tile Designs in Stock</div>
+      </div>
+      <div style="background:var(--charcoal-mid);padding:40px 30px;text-align:center;" class="reveal reveal-delay-2">
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--gold);margin-bottom:12px;">12+</div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);">Years in Business</div>
+      </div>
+      <div style="background:var(--charcoal);padding:40px 30px;text-align:center;" class="reveal reveal-delay-3">
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--gold);margin-bottom:12px;">50+</div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);">Premium Brands</div>
+      </div>
+      <div style="background:var(--charcoal-mid);padding:40px 30px;text-align:center;" class="reveal reveal-delay-4">
+        <div style="font-family:var(--font-display);font-size:48px;color:var(--gold);margin-bottom:12px;">3K+</div>
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);">Satisfied Clients</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <div style="height:80px;background:var(--charcoal);"></div>
+  <section class="section">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="s-label">Get in Touch</div>
+        <h2>Visit Our <em style="font-style:italic;color:var(--gold);">Showroom</em></h2>
+        <p>Come experience our curated collection in person. Our design consultants are ready to help you find the perfect surface for your space.</p>
+        <div class="contact-detail">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail-text">
+            <div class="label">Address</div>
+            <div class="value">Main Showroom Road, Rajkot, Gujarat — 360001</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail-text">
+            <div class="label">Phone</div>
+            <div class="value">+91 98765 43210</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-detail-text">
+            <div class="label">Email</div>
+            <div class="value">info@elegantsurface.in</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-detail-text">
+            <div class="label">Working Hours</div>
+            <div class="value">Mon – Sat: 9:00 AM – 7:00 PM</div>
+          </div>
+        </div>
+        <div style="margin-top:40px;background:var(--cream);padding:28px;border-left:3px solid var(--gold);">
+          <div style="font-family:var(--font-display);font-size:20px;margin-bottom:8px;">Free Design Consultation</div>
+          <div style="font-size:13px;color:var(--stone);line-height:1.8;">Book a free 1-on-1 session with our tile experts. We'll help you choose the perfect combination for your home or project.</div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <h3>Send an <em style="font-style:italic;color:var(--gold-light);">Enquiry</em></h3>
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name" id="f-name"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX" id="f-phone"></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com" id="f-email"></div>
+        <div class="form-group">
+          <label>I'm Looking For</label>
+          <select id="f-type" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);font-family:var(--font-body);font-size:13px;outline:none;">
+            <option value="">Select category</option>
+            <option>Floor Tiles</option>
+            <option>Wall Tiles</option>
+            <option>Sanitary Ware</option>
+            <option>Complete Bathroom Solution</option>
+            <option>Commercial Project</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Your Message</label><textarea rows="4" placeholder="Tell us about your project, size, preferred style..." id="f-msg"></textarea></div>
+        <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+      </div>
+    </div>
+    <!-- SHOWROOM IMAGES -->
+    <div class="showroom-strip reveal" style="margin-top:60px;">
+      <div class="showroom-img" onclick="openLightbox('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400&q=80" alt="Showroom">
+        <div class="showroom-img-overlay"></div>
+      </div>
+      <div class="showroom-img" onclick="openLightbox('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Tiles Display">
+        <div class="showroom-img-overlay"></div>
+      </div>
+      <div class="showroom-img" onclick="openLightbox('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80" alt="Interior">
+        <div class="showroom-img-overlay"></div>
+      </div>
+      <div class="showroom-img" onclick="openLightbox('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=90')">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&q=80" alt="Design">
+        <div class="showroom-img-overlay"></div>
+      </div>
+    </div>
+  </section>
+</div>
+<footer class="footer" id="site-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Elegant<span>Surface</span></div>
+      <div class="footer-desc">Rajkot's premier destination for premium tiles and luxury sanitary ware. Transforming spaces since 2012.</div>
+      <div class="footer-social">
+        <div class="social-btn">in</div>
+        <div class="social-btn">f</div>
+        <div class="social-btn">ig</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a onclick="showPage('products')">Floor Tiles</a>
+      <a onclick="showPage('products')">Wall Tiles</a>
+      <a onclick="showPage('products')">Sanitary Ware</a>
+      <a onclick="showPage('products')">Bathroom Sets</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a onclick="showPage('about')">About Us</a>
+      <a onclick="showPage('gallery')">Gallery</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a>Rajkot, Gujarat — 360001</a>
+      <a>+91 98765 43210</a>
+      <a>info@elegantsurface.in</a>
+      <a>Mon–Sat: 9AM – 7PM</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Elegant Surface Pvt. Ltd. All rights reserved.</div>
+    <div class="footer-copy">Made with care in Rajkot, Gujarat</div>
+  </div>
+</footer>
+
+<script>
+// ── PAGE NAVIGATION ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if (page) {
+    page.classList.add('active');
+    page.classList.add('page-enter');
+    setTimeout(() => page.classList.remove('page-enter'), 500);
+  }
+  const navLink = document.getElementById('nav-' + id);
+  if (navLink) navLink.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  initReveal();
+}
+
+// ── SCROLL NAV ──
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (window.scrollY > 60) { nav.classList.remove('light'); nav.classList.add('scrolled'); }
+  else { nav.classList.add('light'); nav.classList.remove('scrolled'); }
+  initReveal();
+});
+
+// ── REVEAL ON SCROLL ──
+function initReveal() {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) el.classList.add('visible');
+  });
+}
+setTimeout(initReveal, 100);
+
+// ── PRODUCT FILTER ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('btn-gold');
+      b.style.background = 'transparent';
+      b.style.color = 'var(--charcoal)';
+      b.style.border = '1px solid var(--stone-pale)';
+    });
+    this.classList.add('btn-gold');
+    this.style.background = 'var(--gold)';
+    this.style.color = '#fff';
+    this.style.border = 'none';
+    const filter = this.dataset.filter;
+    document.querySelectorAll('#product-grid .product-card').forEach(card => {
+      if (filter === 'all' || card.dataset.cat === filter) {
+        card.style.display = 'block';
+        card.style.animation = 'fadeUp 0.5s ease forwards';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// ── LIGHTBOX ──
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeLightbox(); closeViewer(); }
+});
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ── FORM ──
+function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  if (!name || !phone) { showToast('Please enter your name and phone number.'); return; }
+  showToast('✓ Thank you, ' + name + '! We will call you shortly.');
+  ['f-name','f-phone','f-email','f-type','f-msg'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
+// ── HERO SLIDESHOW ──
+let slideIdx = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+function goSlide(n) {
+  slides[slideIdx].classList.remove('active');
+  dots[slideIdx].classList.remove('active');
+  slideIdx = n;
+  slides[slideIdx].classList.add('active');
+  dots[slideIdx].classList.add('active');
+}
+setInterval(() => goSlide((slideIdx + 1) % slides.length), 5000);
+
+// ══════════════════════════════════════════
+// 360° VIEWER ENGINE
+// ══════════════════════════════════════════
+const FRAMES = 36; // virtual rotation steps
+let v360 = {
+  baseImg: '',
+  name: '',
+  angle: 0,
+  dragging: false,
+  startX: 0,
+  lastAngle: 0,
+  autoTimer: null,
+  autoOn: false,
+  hintHidden: false,
+  sensitivity: 0.5
+};
+
+// Build 12 visual "frames" by warping brightness/hue using canvas
+function buildFrames(imgSrc, callback) {
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    const frames = [];
+    for (let i = 0; i < FRAMES; i++) {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      // slight perspective skew + brightness shift to simulate rotation
+      const t = i / FRAMES;
+      const skew = Math.sin(t * Math.PI * 2) * 0.06;
+      const bright = 0.82 + 0.18 * Math.cos(t * Math.PI * 2); // 0.82–1.0
+      const satMod = 0.9 + 0.1 * Math.abs(Math.cos(t * Math.PI * 2));
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.transform(1, skew, 0, 1, 0, 0);
+      ctx.translate(-canvas.width / 2, -canvas.height / 2);
+      ctx.drawImage(img, 0, 0);
+      ctx.restore();
+      // apply brightness overlay
+      ctx.globalCompositeOperation = bright < 1 ? 'multiply' : 'screen';
+      const alpha = bright < 1 ? (1 - bright) * 0.4 : (bright - 1) * 0.3;
+      ctx.fillStyle = bright < 1
+        ? `rgba(0,0,0,${alpha})`
+        : `rgba(255,255,255,${alpha})`;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      frames.push(canvas.toDataURL('image/jpeg', 0.82));
+    }
+    callback(frames);
+  };
+  img.onerror = () => {
+    // fallback: no cross-origin — use single image, simulate with CSS filter
+    callback(null);
+  };
+  img.src = imgSrc;
+}
+
+let cachedFrames = {};
+let currentFrames = null;
+
+function open360(evt, name, imgSrc) {
+  evt.stopPropagation();
+  v360.name = name;
+  v360.baseImg = imgSrc;
+  v360.angle = 0;
+  v360.autoOn = false;
+  document.getElementById('btn-auto').classList.remove('active-auto');
+  document.getElementById('viewer-name').textContent = name;
+  document.getElementById('viewer-img').src = imgSrc;
+  document.getElementById('viewer-bar').style.width = '0%';
+  document.getElementById('viewer-deg').textContent = '0°';
+  document.getElementById('viewer-hint').classList.remove('hidden');
+  v360.hintHidden = false;
+  buildDots();
+  document.getElementById('viewer360').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (cachedFrames[imgSrc]) {
+    currentFrames = cachedFrames[imgSrc];
+  } else {
+    currentFrames = null;
+    buildFrames(imgSrc, (frames) => {
+      if (frames) {
+        cachedFrames[imgSrc] = frames;
+        currentFrames = frames;
+        renderFrame(v360.angle);
+      }
+    });
+  }
+}
+
+function closeViewer() {
+  stopAuto();
+  document.getElementById('viewer360').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function buildDots() {
+  const dotsEl = document.getElementById('viewer-dots');
+  dotsEl.innerHTML = '';
+  const count = 8;
+  for (let i = 0; i < count; i++) {
+    const d = document.createElement('div');
+    d.className = 'viewer-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => {
+      v360.angle = Math.round((i / count) * 360);
+      renderFrame(v360.angle);
+    });
+    dotsEl.appendChild(d);
+  }
+}
+
+function updateDots(angle) {
+  const dots = document.querySelectorAll('.viewer-dot');
+  const count = dots.length;
+  const active = Math.floor((angle % 360) / (360 / count));
+  dots.forEach((d, i) => d.classList.toggle('active', i === active));
+}
+
+function renderFrame(angle) {
+  const norm = ((angle % 360) + 360) % 360;
+  const img = document.getElementById('viewer-img');
+  const bar = document.getElementById('viewer-bar');
+  const deg = document.getElementById('viewer-deg');
+  bar.style.width = (norm / 360 * 100) + '%';
+  deg.textContent = Math.round(norm) + '°';
+  updateDots(norm);
+
+  if (currentFrames) {
+    const idx = Math.round((norm / 360) * FRAMES) % FRAMES;
+    img.src = currentFrames[idx];
+  } else {
+    // Fallback: CSS filter simulation
+    const t = norm / 360;
+    const bright = 0.82 + 0.18 * Math.cos(t * Math.PI * 2);
+    const skewDeg = Math.sin(t * Math.PI * 2) * 4;
+    img.style.filter = `brightness(${bright.toFixed(2)})`;
+    img.style.transform = `skewX(${skewDeg.toFixed(1)}deg)`;
+  }
+}
+
+// Drag to rotate
+const stage = document.getElementById('viewer-stage');
+
+stage.addEventListener('mousedown', (e) => {
+  v360.dragging = true;
+  v360.startX = e.clientX;
+  v360.lastAngle = v360.angle;
+  stopAuto();
+  hideHint();
+});
+window.addEventListener('mousemove', (e) => {
+  if (!v360.dragging) return;
+  const dx = e.clientX - v360.startX;
+  v360.angle = v360.lastAngle + dx * v360.sensitivity;
+  renderFrame(v360.angle);
+});
+window.addEventListener('mouseup', () => { v360.dragging = false; });
+
+// Touch support
+stage.addEventListener('touchstart', (e) => {
+  v360.dragging = true;
+  v360.startX = e.touches[0].clientX;
+  v360.lastAngle = v360.angle;
+  stopAuto();
+  hideHint();
+}, { passive: true });
+window.addEventListener('touchmove', (e) => {
+  if (!v360.dragging) return;
+  const dx = e.touches[0].clientX - v360.startX;
+  v360.angle = v360.lastAngle + dx * v360.sensitivity;
+  renderFrame(v360.angle);
+}, { passive: true });
+window.addEventListener('touchend', () => { v360.dragging = false; });
+
+function hideHint() {
+  if (!v360.hintHidden) {
+    document.getElementById('viewer-hint').classList.add('hidden');
+    v360.hintHidden = true;
+  }
+}
+
+function toggleAuto() {
+  v360.autoOn ? stopAuto() : startAuto();
+}
+function startAuto() {
+  v360.autoOn = true;
+  document.getElementById('btn-auto').classList.add('active-auto');
+  hideHint();
+  v360.autoTimer = setInterval(() => {
+    v360.angle += 1;
+    renderFrame(v360.angle);
+  }, 30);
+}
+function stopAuto() {
+  v360.autoOn = false;
+  document.getElementById('btn-auto').classList.remove('active-auto');
+  clearInterval(v360.autoTimer);
+}
+function resetViewer() {
+  stopAuto();
+  v360.angle = 0;
+  renderFrame(0);
+}
+</script>
+</body>
+</html>
